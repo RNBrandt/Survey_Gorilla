@@ -31,15 +31,15 @@ end
   answer_var = (Answer.all).sample
   Response.create(
   answer: answer_var,
-  # question: answer_var.question_id,
+  question: Question.find(answer_var.question_id),
   taker: (User.all).sample)
 end
 
-@responses = Response.all
+# @responses = Response.all
 
-@responses.each do |response|
-  response.question = response.answer.question_id
-end
+# @responses.each do |response|
+#   response.question = response.answer.question_id
+# end
 
 
 # Survey.create(title: 'Survey')

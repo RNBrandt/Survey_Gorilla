@@ -2,5 +2,6 @@ class Response < ActiveRecord::Base
   # Remember to create a migration!
   belongs_to :taker, class_name: User
   belongs_to :answer, class_name: Answer
-  validates :question_id, uniqueness: {scope: :answer_id, :taker_id}
+  belongs_to :question, class_name: Question
+  validates :question_id, uniqueness: {scope: :taker_id}
 end
