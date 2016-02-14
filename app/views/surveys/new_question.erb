@@ -1,4 +1,6 @@
-<form action = "/users/:user_id/surveys" method="POST">
+<h1> Add a question to your survey.</h1>
+
+<form action = "/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions" method="POST">
  Question: <input type= "text" name= "question"><br>
  Option 1: <input type= "text" name= "answer1"><br>
  Option 2: <input type= "text" name= "answer2"><br>
