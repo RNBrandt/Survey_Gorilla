@@ -59,4 +59,20 @@ get '/surveys/:id/take' do
   erb :'surveys/take_survey'
 end
 
+post '/surveys/:id/take' do
+  @survey = Survey.find(params[:id])
+  p "params"
+  p params
+  answers = params[:answers]
+  p "answers"
+  p answers
+  answers.each do |question_id,answer_id|
+    response = Response.new(question_id: question_id, answer_id: answer_id, taker_id: session[:user_id])
+    if !response.save
+      @errors = @entry.errors.full_messages
+      erb :'entries/new'
+    end
+  end
+  erb :'surveys/result_survey'
+end
 

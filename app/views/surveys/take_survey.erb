@@ -13,15 +13,17 @@
   </div>
 <%end%>
 
-<form  id = "answer_survey" action = <%= "/users/#{session[:user_id]}/survey/#{@survey.id}/take" %> method = "POST">
+<form  id = "answer_survey" action = <%= "/surveys/#{@survey.id}/take" %> method = "POST">
 <ol class= "question-list">
   <% @survey.questions.each do |question| %>
   <li class "question-text"><%= question.question %> </li>
+  <fieldset>
       <% question.answers.each do |answer| %>
-        <input type ="radio" class = "answer-button" name = <%= "#{question.id}"%> value = <%= "#{answer.answer}" %>
+        <input type ="radio" class = "answer-button" name = <%= "answers[#{question.id}]"%> value = <%= "#{answer.id}" %> > <%=answer.answer%>
       <%end%>
+    </fieldset>
   <%end%>
-  <input type="submit" value="Log In!!">
+  <input type="submit" value="Submit">
 
 </form>
 
