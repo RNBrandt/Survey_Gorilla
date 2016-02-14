@@ -1,7 +1,10 @@
+get '/surveys' do
+  @surveys = Survey.all
+  erb :'surveys/all_surveys'
+end
+
 get '/users/:user_id/surveys/new' do
-
   erb :'surveys/new_survey'
-
 end
 
 post '/users/:user_id/surveys' do
