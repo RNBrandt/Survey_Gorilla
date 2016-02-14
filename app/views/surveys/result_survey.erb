@@ -1,10 +1,24 @@
-<% @survey.questions.each do |question| %>
-  Question: <%= question.question %><br>
+<div class="page-header">
+  <h1><%= @survey.title %></h1>
+</div>
+<div class="col-sm-6">
+<div class=" panel-default">
+  <% @survey.questions.each do |question| %>
+    <div class="panel-heading">Question: <%= question.question %></div>
+  <ul class="list-group">
     <% question.answers.each do |answer| %>
-    Answer: <%= answer.answer %><br>
-      <% id = answer.id %>
-      <% responses = Response.where("answer_id = ?", id) %>
-      Count: <%= responses.length %><br>
+      <li class="list-group-item">
+        <% id = answer.id %>
+        <% responses = Response.where("answer_id = ?", id) %>
+        <span class="badge"><%= responses.length %></span>
+        <%= answer.answer %>
+      </li>
     <% end %>
-
+  </ul>
 <% end %>
+</div>
+</div>
+
+
+
+
