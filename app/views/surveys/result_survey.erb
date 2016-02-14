@@ -4,7 +4,7 @@
     Answer: <%= answer.answer %><br>
       <% id = answer.id %>
       <% responses = Response.where("answer_id = ?", id) %>
-      Count: <%= responses.length %>
+      Count: <%= responses.length %><br>
     <% end %>
 
 <% end %>
