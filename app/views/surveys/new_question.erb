@@ -1,10 +1,39 @@
-<h1> Add a question to your survey.</h1>
+<div class='container'>
+	<div class="col-sm-9 page-header">
+	  <h1>Add a New Question to Your Survey </h1>
+	</div>
+	<div class="col-sm-3"><img class="gorilla-img" src="http://www.clipartlord.com/wp-content/uploads/2016/01/gorilla5.png">
+	</div>
 
-<form action = "/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions" method="POST">
- Question: <input type= "text" name= "question"><br>
- Option 1: <input type= "text" name= "answer1"><br>
- Option 2: <input type= "text" name= "answer2"><br>
- Option 3: <input type= "text" name= "answer3"><br>
- Option 4: <input type= "text" name= "answer4"><br>
- <input type= "submit">
-</form>
+	<div class="col-sm-6">
+	  <div class=" panel-default">
+	    <div class="panel-heading">New Question</div>
+	    <div class="panel-body">
+			<form action = "/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions" method="POST">
+			  <fieldset class="form-group">
+		        <label for="title">Question:</label>
+			    <input class="form-control" type= "text" name= "question">
+			  </fieldset>
+			 <fieldset class="form-group">
+		        <label for="title">Option 1:</label>
+			    <input class="form-control" type= "text" name= "answer1">
+			  </fieldset>
+			 <fieldset class="form-group">
+		        <label for="title">Option 2:</label>
+			    <input class="form-control" type= "text" name= "answer2">
+			  </fieldset>
+			  <fieldset class="form-group">
+		        <label for="title">Option 3:</label>
+			    <input class="form-control" type= "text" name= "answer3">
+			  </fieldset>
+			  <fieldset class="form-group">
+		        <label for="title">Option 4:</label>
+			    <input class="form-control" type= "text" name= "answer4">
+		      </fieldset> 
+			 <input type= "submit" class="btn btn-primary">
+			</form>
+
+	    </div><!-- panel body --> 
+	  </div><!-- panel --> 
+  </div><!-- col-sm-6 -->
+</div><!-- container -->

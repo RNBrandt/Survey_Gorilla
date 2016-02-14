@@ -6,18 +6,22 @@
 <div class="col-sm-3"><img class="gorilla-img" src="http://www.clipartlord.com/wp-content/uploads/2016/01/gorilla5.png"></div>
 
 <div class="col-sm-6">
-	<form action = "/users/<%=session[:user_id]%>/surveys" method="POST">
-       <fieldset class="form-group">
-         <label for="title">Title:</label>
-	     <input class="form-control"  type = "text" name = "title" >
-	   </fieldset>
-	   <fieldset class="form-group">
-	     <label for="Description">Description:</label>
-	     <input class="form-control"  type = "text" name = "description"><br>
-	  </fieldset>
-	  <input type = "submit" class="btn btn-primary">
-	</form>
-
+  <div class=" panel-default">
+    <div class="panel-heading">New Survey</div>
+    <div class="panel-body">
+		<form action = "/users/<%=session[:user_id]%>/surveys" method="POST">
+	       <fieldset class="form-group">
+	         <label for="title">Title:</label>
+		     <input class="form-control"  type = "text" name = "title" >
+		   </fieldset>
+		   <fieldset class="form-group">
+		     <label for="Description">Description:</label>
+		     <input class="form-control"  type = "text" name = "description"><br>
+		  </fieldset>
+		  <input type = "submit" class="btn btn-primary">
+		</form>
+	</div><!-- panel body -->	 
+  </div><!-- panel -->
 </div><!--col-sm-6 -->
 
 </div><!-- container --> 
