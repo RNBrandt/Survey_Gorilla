@@ -1,0 +1,27 @@
+<h1><%=@survey.title%></h1>
+<p><%=@survey.description%></p>
+
+
+<%if @errors%>
+  <dic class="errors-wrapper">
+    <span>Your answers could not be saved: </span>
+    <ul class="errors">
+      <% @errors.each do |error| %>
+      <li class="error"><%errors%> </li>
+      <%end%>
+    </ul>
+  </div>
+<%end%>
+
+<form  id = "answer_survey" action = <%= "/users/#{current_user.id}/survey/#{@survey.id}/take" %> method = "POST">
+<ol class= "question-list">
+  <% @survey.questions each do |question| %>
+  <li class "question-text"><%= question.question %> </li>
+      <% question.answers each do |answer| %>
+        <input type ="radio" class = "answer-button" name = <%= "#{question.id}"%> value = <%= "#{answer.answer}" %>
+      <%end%>
+  <%end%>
+  <input type="submit" value="Log In!!">
+
+</form>
+
