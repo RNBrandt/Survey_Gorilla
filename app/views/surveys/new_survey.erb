@@ -1,7 +1,23 @@
-<h1>Make a new Survey</h1>
 
-<form action = "/users/<%=session[:user_id]%>/surveys" method="POST">
-  Title: <input type = "text" name = "title" ><br>
-  Description: <input type = "text" name = "description"><br>
-  <input type = "submit">
-</form>
+<div class='container'>
+<div class="col-sm-9 page-header">
+  <h1>Make a new Survey <small>Fill out form below</small></h1>
+</div>
+<div class="col-sm-3"><img class="gorilla-img" src="http://www.clipartlord.com/wp-content/uploads/2016/01/gorilla5.png"></div>
+
+<div class="col-sm-6">
+	<form action = "/users/<%=session[:user_id]%>/surveys" method="POST">
+       <fieldset class="form-group">
+         <label for="title">Title:</label>
+	     <input class="form-control"  type = "text" name = "title" >
+	   </fieldset>
+	   <fieldset class="form-group">
+	     <label for="Description">Description:</label>
+	     <input class="form-control"  type = "text" name = "description"><br>
+	  </fieldset>
+	  <input type = "submit" class="btn btn-primary">
+	</form>
+
+</div><!--col-sm-6 -->
+
+</div><!-- container --> 
