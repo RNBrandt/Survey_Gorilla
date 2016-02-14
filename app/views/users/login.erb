@@ -1,0 +1,15 @@
+
+Log in:
+<form action="/login" method="POST">
+Username: <input type="text" name= "username"><br>
+Password: <input type="text" name= "password"><br>
+<input type = "submit"> <%= flash[:error_login] %>
+</form><br>
+
+Sign up:
+<form action="/users" method="POST">
+Username: <input type="text" name= "username"><br>
+Email: <input type="email" name= "email" required><br>
+Password: <input type="text" name= "password"><br>
+<input type = "submit"> <%= flash[:error_signup] %>
+</form>

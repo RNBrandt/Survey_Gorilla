@@ -1,0 +1,7 @@
+<h1>Make a new Survey</h1>
+
+<form action = "/users/<%=session[:user_id]%>/surveys" method="POST">
+  Title: <input type = "text" name = "title" ><br>
+  Description: <input type = "text" name = "description"><br>
+  <input type = "submit">
+</form>
