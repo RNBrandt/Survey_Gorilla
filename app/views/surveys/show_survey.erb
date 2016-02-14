@@ -1,11 +1,16 @@
 
 Title: <%= @survey.title %><br>
-Description: <%= @survey.description %><br>
+Description: <%= @survey.description %><br><br>
 
-Question: <%= @question.question %><br>
-
-<% count = 1 %>
-<% @answers.each do |answer| %>
-  <%= count %>) <%= answer.answer %><br>
-  <% count += 1 %>
+<% @questions.each do |question| %>
+  Question: <%= question.question %><br>
+  <% count = 1 %>
+  <% answers = question.answers %>
+  <% answers.each do |answer| %>
+    <%= count %>) <%= answer.answer %><br>
+    <% count += 1 %>
+  <% end %>
+  <br>
 <% end %>
+
+<a href="/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions/new">Add another question.</a>

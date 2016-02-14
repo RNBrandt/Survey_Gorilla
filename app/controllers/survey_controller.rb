@@ -19,8 +19,10 @@ end
 
 post '/users/:user_id/surveys/:survey_id/questions' do
   @survey = Survey.find(params[:survey_id])
+
   @question = Question.new(question: params[:question])
   @question.survey = @survey
+
   @answer1 = Answer.new(answer: params[:answer1])
   @answer1.question = @question
   @answer2 = Answer.new(answer: params[:answer2])
@@ -42,8 +44,7 @@ end
 
 get '/users/:user_id/survey/:id' do
   @survey = Survey.find(params[:id])
-  @question = Question.find_by(survey: params[:id])
-  @answers = Answer.where("question_id = ?", @question.id)
+  @questions = Question.where("survey_id = ?", params[:id])
 
   erb :'surveys/show_survey'
 end
