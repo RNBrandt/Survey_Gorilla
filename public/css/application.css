@@ -7,3 +7,13 @@
 th {
   text-align: left;
 }
+
+.gorilla-img {
+	height: 15em;
+	margin:2em;
+}
+
+.page-header {
+	font-family: 'Fugaz One', cursive;
+	
+}
