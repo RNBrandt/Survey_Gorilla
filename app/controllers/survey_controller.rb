@@ -22,10 +22,8 @@ end
 
 post '/users/:user_id/surveys/:survey_id/questions' do
   @survey = Survey.find(params[:survey_id])
-
   @question = Question.new(question: params[:question])
   @question.survey = @survey
-
   @answer1 = Answer.new(answer: params[:answer1])
   @answer1.question = @question
   @answer2 = Answer.new(answer: params[:answer2])
@@ -34,22 +32,25 @@ post '/users/:user_id/surveys/:survey_id/questions' do
   @answer3.question = @question
   @answer4 = Answer.new(answer: params[:answer4])
   @answer4.question = @question
-
   @survey.save
   @question.save
   @answer1.save
   @answer2.save
   @answer3.save
   @answer4.save
-
   redirect "/users/#{session[:user_id]}/survey/#{@survey.id}"
 end
 
 get '/users/:user_id/survey/:id' do
   @survey = Survey.find(params[:id])
   @questions = Question.where("survey_id = ?", params[:id])
-
   erb :'surveys/show_survey'
+end
+
+get '/surveys/:id/result' do
+  @survey = Survey.find(params[:id])
+  # @questions = Response.where()
+  erb :'surveys/result_survey'
 end
 
 

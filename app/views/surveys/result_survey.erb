@@ -1,0 +1,10 @@
+<% @survey.questions.each do |question| %>
+  Question: <%= question.question %><br>
+    <% question.answers.each do |answer| %>
+    Answer: <%= answer.answer %><br>
+      <% id = answer.id %>
+      <% responses = Response.where("answer_id = ?", id) %>
+      Count: <%= responses.length %>
+    <% end %>
+
+<% end %>
