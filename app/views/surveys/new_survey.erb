@@ -1,7 +1,16 @@
-<h1>Make a new Survey</h1>
-
-<form action = "/users/<%=session[:user_id]%>/surveys" method="POST">
-  Title: <input type = "text" name = "title" ><br>
-  Description: <input type = "text" name = "description"><br>
-  <input type = "submit">
-</form>
+<div class= "container">
+  <div class="page-header">
+  <h1>Make a new Survey</h1>
+  </div> <!-- page-header div   -->
+  <div class="creation-container">
+    <form action = "/users/<%=session[:user_id]%>/surveys" method="POST">
+      <div class="input-field">
+      Title: <input type = "text" name = "title" ></div><!-- closing input-field  div   -->
+      <div class="input-field">
+      Description: <input type = "text" name = "description"></div><!-- closing input-field  div   -->
+      <div class="submit-button">
+        <input type = "submit">
+      </div> <!-- closing submit-button  -->
+    </form>
+  </div> <!-- closing creation-container  -->
+</div> <!-- closing container  -->
