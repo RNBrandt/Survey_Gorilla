@@ -28,11 +28,19 @@ end
 end
 
 75.times do |n|
+  answer_var = (Answer.all).sample
   Response.create(
-  question: (Question.all).sample,
-  taker: (User.all).sample,
-  answer: (Answre.all).sample )
+  answer: answer_var,
+  # question: answer_var.question_id,
+  taker: (User.all).sample)
 end
+
+@responses = Response.all
+
+@responses.each do |response|
+  response.question = response.answer.question_id
+end
+
 
 # Survey.create(title: 'Survey')
 # Question.create(question: 'sup?')
