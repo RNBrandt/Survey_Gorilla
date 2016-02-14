@@ -47,10 +47,16 @@ get '/users/:user_id/survey/:id' do
   erb :'surveys/show_survey'
 end
 
-get '/surveys/:id/result' do
+get '/surveys/:id/results' do
   @survey = Survey.find(params[:id])
   # @questions = Response.where()
   erb :'surveys/result_survey'
+end
+
+get '/surveys/:id/take' do
+  @survey = Survey.find(params[:id])
+
+  erb :'surveys/take_survey'
 end
 
 
