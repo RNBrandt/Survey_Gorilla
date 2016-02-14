@@ -1,0 +1,11 @@
+
+Title: <%= @survey.title %><br>
+Description: <%= @survey.description %><br>
+
+Question: <%= @question.question %><br>
+
+<% count = 1 %>
+<% @answers.each do |answer| %>
+  <%= count %>) <%= answer.answer %><br>
+  <% count += 1 %>
+<% end %>
