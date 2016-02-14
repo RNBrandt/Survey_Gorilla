@@ -1,6 +1,13 @@
-<h1>All the surveys</h1>
+<div class= "container">
+<div class="page-header">
+  <h1>Welcome to Survey Gorrilla <small>Take a look at all the surveys</small></h1>
+</div>
 
 <% @surveys.each do |survey| %>
-<h3><a href="/users/<%=survey.maker.id%>/survey/<%=survey.id%>"><%= survey.title %></a></h3>
-<a href ="/surveys/<%=survey.id%>/take">--Take Survey</a><br><a href="/surveys/<%=survey.id%>/results">--View Results</a><br>
+<div class="survey-links"><a href="/users/<%=survey.maker.id%>/survey/<%=survey.id%>"><%= survey.title %></a>
+</div><!-- closing survey links   -->
+<div class="take-survey"><a href ="/surveys/<%=survey.id%>/take">Take Survey</a>
+</div><!-- closing take survey link   -->
+ <div class="survey-results"><a href="/surveys/<%=survey.id%>/results">View Results</a>
+ </div><!-- closing take-survey link   -->
 <% end %>
