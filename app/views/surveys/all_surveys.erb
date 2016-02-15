@@ -4,10 +4,10 @@
 </div>
 
 <% @surveys.each do |survey| %>
-<div class="survey-links"><a href="/users/<%=survey.maker.id%>/survey/<%=survey.id%>"><%= survey.title %></a>
+<div class="survey-links"><a href="/users/<%=survey.maker.id%>/survey/<%=survey.id%>"><h3><%= survey.title %></h3></a>
 </div><!-- closing survey links   -->
-<div class="take-survey"><a href ="/surveys/<%=survey.id%>/take">Take Survey</a>
-</div><!-- closing take survey link   -->
- <div class="survey-results"><a href="/surveys/<%=survey.id%>/results">View Results</a>
- </div><!-- closing take-survey link   -->
+<div class="btn-group" role="group" aria-label="...">
+<button type="button" class="btn btn-default"><a href ="/surveys/<%=survey.id%>/take">Take Survey</a></button>
+<button type="button" class="btn btn-default"><a href="/surveys/<%=survey.id%>/results">View Results</a></button>
+</div><!-- closing button group link   -->
 <% end %>
