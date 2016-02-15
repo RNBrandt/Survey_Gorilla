@@ -33,10 +33,12 @@ post '/users' do
 end
 
 get '/users/:user_id/yours' do
+  @surveys = Survey.where("maker_id = ?", params[:user_id])
   erb :'users/yours'
 end
 
 get '/logout' do
   session.clear
+  redirect '/login'
 end
 
