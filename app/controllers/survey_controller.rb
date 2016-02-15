@@ -20,6 +20,12 @@ get '/users/:user_id/surveys/:survey_id/questions/new' do
   erb :'surveys/new_question'
 end
 
+get '/users/:user_id/surveys/:survey_id/questions/:question_id/edit' do
+  @survey = Survey.find(params[:survey_id])
+  @question = Question.find(params[:question_id])
+  erb :'surveys/new_question'
+end
+
 post '/users/:user_id/surveys/:survey_id/questions' do
   @survey = Survey.find(params[:survey_id])
   @question = Question.new(question: params[:question])
