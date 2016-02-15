@@ -7,7 +7,7 @@
 <div class="col-sm-6">
   <div class=" panel-default">
     <% @questions.each do |question| %>
-    <div class="panel-heading">Question: <%= question.question %> <button type="button" class="btn btn-default pull-right"><a href="/users/<%=@survey.maker.id%>/surveys/<%=@survey.id%>/questions/<%=question.id%>/edit ">Edit</a></button></div>
+    <div class="panel-heading">Question: <%= question.question %> <% if session[:user_id] == @survey.maker.id %><button type="button" class="btn btn-default pull-right"><a href="/users/<%=@survey.maker.id%>/surveys/<%=@survey.id%>/questions/<%=question.id%>/edit ">Edit</a></button><% end %></div>
     <ul class="list-group">
       <% count = 1 %>
       <% answers = question.answers %>
@@ -20,6 +20,8 @@
     </ul>
     <% end %>
 
-    <a href="/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions/new">Add another question.</a>
+    <% if session[:user_id] == @survey.maker.id %>
+    <button type="button" class="btn btn-default pull-right"><a href="/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions/new">Add another question.</a></button>
+    <% end %>
 
 </div><!-- closing container  -->
