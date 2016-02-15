@@ -5,7 +5,14 @@ helpers do
   end
 
   def logged_in?
-    session[:id] != nil
+    session[:user_id] != nil
+  end
+
+  def authorized
+    p logged_in?
+    unless logged_in?
+      redirect '/'
+    end
   end
 
   def current_user

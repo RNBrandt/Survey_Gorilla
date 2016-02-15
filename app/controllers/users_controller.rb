@@ -33,6 +33,7 @@ post '/users' do
 end
 
 get '/users/:user_id/yours' do
+  authorized
   @surveys = Survey.where("maker_id = ?", params[:user_id])
   erb :'users/yours'
 end

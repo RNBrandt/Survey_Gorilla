@@ -1,9 +1,11 @@
 get '/surveys' do
+  authorized
   @surveys = Survey.all
   erb :'surveys/all_surveys'
 end
 
 get '/users/:user_id/surveys/new' do
+  authorized
   erb :'surveys/new_survey'
 end
 
@@ -16,11 +18,13 @@ post '/users/:user_id/surveys' do
 end
 
 get '/users/:user_id/surveys/:survey_id/questions/new' do
+  authorized
   @survey = Survey.find(params[:survey_id])
   erb :'surveys/new_question'
 end
 
 get '/users/:user_id/surveys/:survey_id/questions/:question_id/edit' do
+  authorized
   @survey = Survey.find(params[:survey_id])
   @question = Question.find(params[:question_id])
   erb :'surveys/edit_question'
@@ -71,18 +75,21 @@ post '/users/:user_id/surveys/:survey_id/questions' do
 end
 
 get '/users/:user_id/survey/:id' do
+  authorized
   @survey = Survey.find(params[:id])
   @questions = Question.where("survey_id = ?", params[:id])
   erb :'surveys/show_survey'
 end
 
 get '/surveys/:id/results' do
+  authorized
   @survey = Survey.find(params[:id])
   # @questions = Response.where()
   erb :'surveys/result_survey'
 end
 
 get '/surveys/:id/take' do
+  authorized
   @survey = Survey.find(params[:id])
   erb :'surveys/take_survey'
 end
