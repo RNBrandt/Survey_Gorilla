@@ -1,27 +1,30 @@
-<h1><%=@survey.title%></h1>
-<p><%=@survey.description%></p>
-
+<div class= "container">
+  <div class="page-header">
+    <h1><%=@survey.title%> <small><%=@survey.description%></small></h1>
+  </div> <!-- closing individual answer div   -->
 
 <%if @errors%>
-  <dic class="errors-wrapper">
+  <div class="errors-wrapper">
     <span>Your answers could not be saved: </span>
     <ul class="errors">
       <% @errors.each do |error| %>
       <li class="error"><%errors%> </li>
       <%end%>
     </ul>
-  </div>
+  </div>  <!-- closing errors-wrapper container  -->
 <%end%>
-
-<form  id = "answer_survey" action = <%= "/users/#{session[:user_id]}/survey/#{@survey.id}/take" %> method = "POST">
-<ol class= "question-list">
-  <% @survey.questions.each do |question| %>
-  <li class "question-text"><%= question.question %> </li>
-      <% question.answers.each do |answer| %>
-        <input type ="radio" class = "answer-button" name = <%= "#{question.id}"%> value = <%= "#{answer.answer}" %>
+  <div class="question-answer container">
+    <form  id = "answer_survey" action ="<%= "/users/#{session[:user_id]}/survey/#{@survey.id}/take" %>" method = "POST">
+    <ol class= "question-list">
+      <% @survey.questions.each do |question| %>
+      <li class "question-text"><%= question.question %> </li>
+          <% question.answers.each do |answer| %>
+            <input type="radio" class ="answer-button" name ="<%= "#{question.id}"%>" value ="<%= "#{answer.answer}" %>">
+          <%end%>
       <%end%>
-  <%end%>
-  <input type="submit" value="Log In!!">
-
-</form>
-
+      <div class="submit-button">
+      <input type="submit" value="Submit Answer">
+      </div> <!-- closing submit-button  -->
+    </form>
+  </div>  <!-- closing question-answer container  -->
+</div> <!-- closing container  -->
