@@ -1,5 +1,13 @@
-<h1>All the surveys</h1>
+<div class= "container">
+<div class="page-header">
+  <h1>Welcome to Survey Gorrilla <small>Take a look at all the surveys</small></h1>
+</div>
 
 <% @surveys.each do |survey| %>
-<a href="/users/<%=survey.maker.id%>/survey/<%=survey.id%>"><%= survey.title %></a><br>
+<div class="survey-links"><a href="/users/<%=survey.maker.id%>/survey/<%=survey.id%>"><h3><%= survey.title %></h3></a>
+</div><!-- closing survey links   -->
+<div class="btn-group" role="group" aria-label="...">
+<button type="button" class="btn btn-default"><a href ="/surveys/<%=survey.id%>/take">Take Survey</a></button>
+<button type="button" class="btn btn-default"><a href="/surveys/<%=survey.id%>/results">View Results</a></button>
+</div><!-- closing button group link   -->
 <% end %>

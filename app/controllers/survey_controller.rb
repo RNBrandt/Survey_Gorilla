@@ -20,12 +20,17 @@ get '/users/:user_id/surveys/:survey_id/questions/new' do
   erb :'surveys/new_question'
 end
 
-post '/users/:user_id/surveys/:survey_id/questions' do
+get '/users/:user_id/surveys/:survey_id/questions/:question_id/edit' do
   @survey = Survey.find(params[:survey_id])
+  @question = Question.find(params[:question_id])
+  erb :'surveys/edit_question'
+end
 
-  @question = Question.new(question: params[:question])
-  @question.survey = @survey
-
+put '/users/:user_id/surveys/:survey_id/questions/:question_id' do
+  @survey = Survey.find(params[:survey_id])
+  @question = Question.find(params[:question_id])
+  @question.update_attributes(question: params[:question])
+  @question.answers.delete_all
   @answer1 = Answer.new(answer: params[:answer1])
   @answer1.question = @question
   @answer2 = Answer.new(answer: params[:answer2])
@@ -34,7 +39,6 @@ post '/users/:user_id/surveys/:survey_id/questions' do
   @answer3.question = @question
   @answer4 = Answer.new(answer: params[:answer4])
   @answer4.question = @question
-
   @survey.save
   @question.save
   @answer1.save
@@ -42,14 +46,65 @@ post '/users/:user_id/surveys/:survey_id/questions' do
   @answer3.save
   @answer4.save
 
+  redirect "/users/#{@survey.maker.id}/survey/#{@survey.id}"
+end
+
+post '/users/:user_id/surveys/:survey_id/questions' do
+  @survey = Survey.find(params[:survey_id])
+  @question = Question.new(question: params[:question])
+  @question.survey = @survey
+  @answer1 = Answer.new(answer: params[:answer1])
+  @answer1.question = @question
+  @answer2 = Answer.new(answer: params[:answer2])
+  @answer2.question = @question
+  @answer3 = Answer.new(answer: params[:answer3])
+  @answer3.question = @question
+  @answer4 = Answer.new(answer: params[:answer4])
+  @answer4.question = @question
+  @survey.save
+  @question.save
+  @answer1.save
+  @answer2.save
+  @answer3.save
+  @answer4.save
   redirect "/users/#{session[:user_id]}/survey/#{@survey.id}"
 end
 
 get '/users/:user_id/survey/:id' do
   @survey = Survey.find(params[:id])
   @questions = Question.where("survey_id = ?", params[:id])
-
   erb :'surveys/show_survey'
 end
 
+get '/surveys/:id/results' do
+  @survey = Survey.find(params[:id])
+  # @questions = Response.where()
+  erb :'surveys/result_survey'
+end
+
+get '/surveys/:id/take' do
+  @survey = Survey.find(params[:id])
+  erb :'surveys/take_survey'
+end
+
+post '/surveys/:id/take' do
+  @survey = Survey.find(params[:id])
+  @errors = []
+  answers = params[:answers]
+  if answers
+    answers.each do |question_id,answer_id|
+      response = Response.new(question_id: question_id, answer_id: answer_id, taker_id: session[:user_id])
+      if !response.save
+        @errors << response.errors.full_messages
+        p "ERROR!"
+        p @errors
+      end
+    end
+  end
+  if @errors != []
+    erb :'surveys/take_survey'
+  else
+    erb :'surveys/result_survey'
+  end
+end
 

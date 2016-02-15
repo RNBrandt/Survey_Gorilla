@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   # Remember to create a migration!
   include BCrypt
-  has_many :surveys
-  has_many :responses
+  has_many :surveys, foreign_key: "maker_id"
+  has_many :responses, foreign_key: "taker_id"
 
   def password
     @password ||= Password.new(password_hash)

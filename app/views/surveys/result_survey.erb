@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1><%= @survey.title %></h1>
+</div>
+<div class="col-sm-6">
+<div class=" panel-default">
+  <% @survey.questions.each do |question| %>
+    <div class="panel-heading">Question: <%= question.question %></div>
+  <ul class="list-group">
+    <% winner = 0 %>
+    <% question.answers.each do |answer| %>
+      <% id = answer.id %>
+      <% responses = Response.where("answer_id = ?", id) %>
+      <% if responses.length > winner %>
+        <% winner = responses.length %>
+      <% end %>
+    <% end %>
+    <% question.answers.each do |answer| %>
+      <li class="list-group-item">
+        <% id = answer.id %>
+        <% responses = Response.where("answer_id = ?", id) %>
+        <span class="badge"><%= responses.length %></span>
+        <% if responses.length == winner %>
+        <span class="glyphicon glyphicon-star" aria-hidden="false"></span>
+        <% end %>
+        <%= answer.answer %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+</div>
+
+
+
+
+
