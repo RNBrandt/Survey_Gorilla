@@ -51,7 +51,6 @@ get '/surveys/:id/results' do
   @survey = Survey.find(params[:id])
   # @questions = Response.where()
   erb :'surveys/result_survey'
-end
 
 get '/surveys/:id/take' do
   @survey = Survey.find(params[:id])
