@@ -23,7 +23,30 @@ end
 get '/users/:user_id/surveys/:survey_id/questions/:question_id/edit' do
   @survey = Survey.find(params[:survey_id])
   @question = Question.find(params[:question_id])
-  erb :'surveys/new_question'
+  erb :'surveys/edit_question'
+end
+
+put '/users/:user_id/surveys/:survey_id/questions/:question_id' do
+  @survey = Survey.find(params[:survey_id])
+  @question = Question.find(params[:question_id])
+  @question.update_attributes(question: params[:question])
+  @question.answers.delete_all
+  @answer1 = Answer.new(answer: params[:answer1])
+  @answer1.question = @question
+  @answer2 = Answer.new(answer: params[:answer2])
+  @answer2.question = @question
+  @answer3 = Answer.new(answer: params[:answer3])
+  @answer3.question = @question
+  @answer4 = Answer.new(answer: params[:answer4])
+  @answer4.question = @question
+  @survey.save
+  @question.save
+  @answer1.save
+  @answer2.save
+  @answer3.save
+  @answer4.save
+
+  redirect "/users/#{@survey.maker.id}/survey/#{@survey.id}"
 end
 
 post '/users/:user_id/surveys/:survey_id/questions' do
