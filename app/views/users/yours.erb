@@ -6,7 +6,7 @@
   </div>
 
  <!--  <div class="btn-group" role="group" aria-label="...">
- 
+
 		<a class="btn btn-primary" href= "/users/<%=session[:user_id]%>/surveys/new">Make a new survey!</a>
 
 	    <a class="btn btn-primary" href="/surveys">See all the surveys.</a>
@@ -18,5 +18,10 @@
     <li><a class="btn btn-primary" href="/surveys">See all the surveys.</a></li>
   </ul>
 </nav>
+<h2>Your Surveys</h2>
+<% @surveys.each do |survey| %>
+<div class="survey-links"><a href="/users/<%=survey.maker.id%>/survey/<%=survey.id%>"><h3><%= survey.title %></h3></a>
+</div><!-- closing survey links   -->
+<% end %>
 
 </div><!-- container -->
