@@ -1,16 +1,25 @@
+<div class= "container">
+<div class="page-header">
+  <h1> <%= @survey.title %></h1>
+  <h2><%= @survey.description %></h2>
+</div>
 
-Title: <%= @survey.title %><br>
-Description: <%= @survey.description %><br><br>
+<div class="col-sm-6">
+  <div class=" panel-default">
+    <% @questions.each do |question| %>
+    <div class="panel-heading">Question: <%= question.question %> <button type="button" class="btn btn-default pull-right"><a href="/users/<%=@survey.maker.id%>/surveys/<%=@survey.id%>/questions/<%=question.id%>/edit ">Edit</a></button></div>
+    <ul class="list-group">
+      <% count = 1 %>
+      <% answers = question.answers %>
+      <% answers.each do |answer| %>
+      <li class="list-group-item">
+        <%= count %>) <%= answer.answer %>
+        <% count += 1 %>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
 
-<% @questions.each do |question| %>
-  Question: <%= question.question %><br>
-  <% count = 1 %>
-  <% answers = question.answers %>
-  <% answers.each do |answer| %>
-    <%= count %>) <%= answer.answer %><br>
-    <% count += 1 %>
-  <% end %>
-  <br>
-<% end %>
+    <a href="/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions/new">Add another question.</a>
 
-<a href="/users/<%=session[:user_id]%>/surveys/<%=@survey.id%>/questions/new">Add another question.</a>
+</div><!-- closing container  -->
